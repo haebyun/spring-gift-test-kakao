@@ -1,1 +1,1 @@
-# kakao-gift
+# spring-gift-test
