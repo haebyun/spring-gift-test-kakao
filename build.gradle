@@ -29,7 +29,7 @@ dependencies {
 	testImplementation 'io.cucumber:cucumber-spring'
 	testImplementation 'io.cucumber:cucumber-junit-platform-engine'
 	testImplementation 'org.junit.platform:junit-platform-suite'
-	testImplementation 'org.postgresql:postgresql'
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {
@@ -43,7 +43,15 @@ tasks.register('dockerUp', Exec) {
 }
 
 tasks.register('dockerDown', Exec) {
-	commandLine 'docker', 'compose', 'down'
+	commandLine 'docker', 'compose', '--profile', 'e2e', 'down'
+}
+
+tasks.register('dockerBuild', Exec) {
+	commandLine 'docker', 'compose', '--profile', 'e2e', 'build'
+}
+
+tasks.register('dockerUpE2e', Exec) {
+	commandLine 'docker', 'compose', '--profile', 'e2e', 'up', '-d', '--wait'
 }
 
 tasks.register('cucumberTest', Test) {
@@ -52,5 +60,14 @@ tasks.register('cucumberTest', Test) {
 	}
 	systemProperty 'cucumber.glue', 'gift.bdd,gift.cucumber'
 	dependsOn dockerUp
+	finalizedBy dockerDown
+}
+
+tasks.register('e2eTest', Test) {
+	useJUnitPlatform {
+		includeEngines 'cucumber'
+	}
+	systemProperty 'cucumber.glue', 'gift.bdd,gift.e2e'
+	dependsOn dockerBuild, dockerUpE2e
 	finalizedBy dockerDown
 }
