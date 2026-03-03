@@ -1,4 +1,4 @@
-package gift.bdd;
+package gift.steps;
 
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;

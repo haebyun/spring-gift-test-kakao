@@ -1,8 +1,9 @@
-package gift.bdd;
+package gift.steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -17,7 +18,8 @@ public class CategoryStepDefs {
     public void createCategory(final String name) {
         state.setResponse(
                 RestAssured.given()
-                        .formParam("name", name)
+                        .contentType(ContentType.JSON)
+                        .body("{\"name\": \"" + name + "\"}")
                 .when()
                         .post("/api/categories")
         );

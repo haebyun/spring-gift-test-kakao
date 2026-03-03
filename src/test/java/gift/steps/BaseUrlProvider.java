@@ -1,4 +1,4 @@
-package gift.bdd;
+package gift.steps;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;

@@ -8,6 +8,6 @@ import org.junit.platform.suite.api.Suite;
 
 @Suite
 @IncludeEngines("cucumber")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "gift.bdd,gift.cucumber")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "gift.steps,gift.cucumber")
 public class RunCucumberTest {
 }

@@ -58,7 +58,7 @@ tasks.register('cucumberTest', Test) {
 	useJUnitPlatform {
 		includeEngines 'cucumber'
 	}
-	systemProperty 'cucumber.glue', 'gift.bdd,gift.cucumber'
+	systemProperty 'cucumber.glue', 'gift.steps,gift.cucumber'
 	dependsOn dockerUp
 	finalizedBy dockerDown
 }
@@ -67,7 +67,7 @@ tasks.register('e2eTest', Test) {
 	useJUnitPlatform {
 		includeEngines 'cucumber'
 	}
-	systemProperty 'cucumber.glue', 'gift.bdd,gift.e2e'
+	systemProperty 'cucumber.glue', 'gift.steps,gift.e2e'
 	dependsOn dockerBuild, dockerUpE2e
 	finalizedBy dockerDown
 }

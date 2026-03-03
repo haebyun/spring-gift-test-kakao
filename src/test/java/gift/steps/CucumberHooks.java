@@ -1,4 +1,4 @@
-package gift.bdd;
+package gift.steps;
 
 import gift.model.CategoryRepository;
 import gift.model.MemberRepository;

@@ -1,4 +1,4 @@
-package gift.bdd;
+package gift.steps;
 
 import gift.model.Member;
 import gift.model.Option;
